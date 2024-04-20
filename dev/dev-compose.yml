@@ -6,7 +6,8 @@ services:
     restart: always
     build:
       context: ../dev
-      dockerfile: deploy.Dockerfile
+      dockerfile: node_11.15.0.Dockerfile
+    #
     image: chenaimin/stackedit:1.0.1
     container_name: stackedit-dev
     privileged: true   #设置容器的权限为root
