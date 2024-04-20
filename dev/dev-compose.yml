@@ -1,0 +1,16 @@
+version: "3"   #版本信息
+
+services:
+  iot-box:
+    restart: always
+    build:
+      context: ../dev
+      dockerfile: deploy.Dockerfile
+    image: test:1.0.0
+    container_name: test-dev
+    privileged: true   #设置容器的权限为root
+    ports:
+      - "2222:22"
+    environment:
+      TZ: Asia/Shanghai
+    tty: true
