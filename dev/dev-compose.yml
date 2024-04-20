@@ -1,13 +1,14 @@
 version: "3"   #版本信息
 
 services:
-  iot-box:
+  # 富文本编辑器
+  stackedit:
     restart: always
     build:
       context: ../dev
       dockerfile: deploy.Dockerfile
-    image: test:1.0.0
-    container_name: test-dev
+    image: chenaimin/stackedit:1.0.1
+    container_name: stackedit-dev
     privileged: true   #设置容器的权限为root
     ports:
       - "2222:22"
