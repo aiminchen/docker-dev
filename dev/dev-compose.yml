@@ -2,17 +2,30 @@ version: "3"   #版本信息
 
 services:
   # 富文本编辑器
-  stackedit:
+  node-dev:
     restart: always
     build:
       context: ../dev
-      dockerfile: node_11.15.0.Dockerfile
-    #
-    image: chenaimin/stackedit:1.0.1
-    container_name: stackedit-dev
+      dockerfile: node_dev.Dockerfile
+    # stackedit 的node环境
+#    image: chenaimin/wkhtmltopdf-nodejs:12.22.12
+    image: chenaimin/nodejs-dev:1.0.1
+    container_name: node-dev
     privileged: true   #设置容器的权限为root
     ports:
       - "2222:22"
     environment:
       TZ: Asia/Shanghai
     tty: true
+
+  stackedit:
+    image: chenaimin/stackedit
+    container_name: stackedit
+    environment:
+      - LISTENING_PORT=8080
+      - ROOT_URL=/
+      - USER_BUCKET_NAME=root
+    ports:
+      - 8080:8080/tcp
+    network_mode: bridge
+    restart: always
